@@ -14,9 +14,11 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
  
 
-app.use( require('./routes/usuario') );
+// configuracion global de rutas
+app.use( require('./routes/index') );
 
 
+// conexión a base de datos
 mongoose.connect(process.env.URLDB, (err, res)=>{
 
     if ( err ) throw err;
@@ -25,7 +27,7 @@ mongoose.connect(process.env.URLDB, (err, res)=>{
 
 });
 
- 
+// puesta en marcha del servidor
 app.listen(process.env.PORT, ()=>{
     console.log('Escuchando puerto: ', process.env.PORT);
 });
